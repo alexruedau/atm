@@ -5,12 +5,44 @@ class Bill {
   }
 }
 
+function giveMoney() {
+  var t = document.getElementById("money");
+  money = parseInt(t.value);
+  for (var bi of myBox) {
+    if (money > 0) {
+      div = Math.floor(money / bi.myValue);
+      if(div > bi.myQuantity) {
+        papers = bi.myQuantity;
+      } else {
+        papers = div;
+      }
+
+      delivered.push(new Bill(bi.myValue, papers));
+      money = money - (bi.myValue * papers);
+    }
+  }
+
+  if (money > 0) {
+    document.write("I'm poor! :()");
+  } else {
+    for (var d of delivered) {
+      document.write(d.myQuantity + " bills of $" + d.myValue + "<br />");
+    }
+  }
+
+}
+
+
+
 var myBox = [];
 var delivered = [];
-myBox.push(new Bill(50, 3));
-myBox.push(new Bill(20, 2));
-myBox.push(new Bill(10, 2));
+myBox.push(new Bill(50, 10));
+myBox.push(new Bill(20, 30));
+myBox.push(new Bill(10, 10));
 
-var money = 210;
+var money = 0;
 var div = 0;
 var papers = 0;
+
+var btn = document.getElementById("withdraw");
+document.addEventListener("click", giveMoney);
