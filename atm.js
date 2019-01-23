@@ -19,6 +19,7 @@ function giveMoney() {
 
       delivered.push(new Bill(bi.myValue, papers));
       money = money - (bi.myValue * papers);
+      //money -= (bi.myValue * papers); 
     }
   }
 
@@ -27,7 +28,9 @@ function giveMoney() {
     myResult.innerHTML = "I'm poor! :()";
   } else {
     for (var d of delivered) {
-      myResult.innerHTML = myResult.innerHTML + d.myQuantity + " bills of $" + d.myValue + "<br />";
+      if (d.myQuantity > 0) {
+        myResult.innerHTML += d.myQuantity + " bills of $" + d.myValue + "<br />";
+      }
     }
   }
 
