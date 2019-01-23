@@ -23,10 +23,11 @@ function giveMoney() {
   }
 
   if (money > 0) {
-    document.write("I'm poor! :()");
+
+    myResult.innerHTML = "I'm poor! :()";
   } else {
     for (var d of delivered) {
-      document.write(d.myQuantity + " bills of $" + d.myValue + "<br />");
+      myResult.innerHTML = myResult.innerHTML + d.myQuantity + " bills of $" + d.myValue + "<br />";
     }
   }
 
@@ -44,5 +45,6 @@ var money = 0;
 var div = 0;
 var papers = 0;
 
+var myResult = document.getElementById("myResult");
 var btn = document.getElementById("withdraw");
 document.addEventListener("click", giveMoney);
